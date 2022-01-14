@@ -12,7 +12,6 @@
         <module>lesson-01-serblet-api</module>
         <module>lesson-02-spring-framework</module>
         <module>lesson-03-spring-mvc</module>
-        <module>lesson-04-spring-boot</module>
     </modules>
 
     <properties>
