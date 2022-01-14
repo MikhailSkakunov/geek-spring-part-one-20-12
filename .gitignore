@@ -1,0 +1,4 @@
+# Project exclude paths
+/lesson-01-serblet-api/target/
+/lesson-02-spring-framework/target/
+/lesson-03-spring-mvc/target/
