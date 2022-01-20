@@ -1,9 +1,6 @@
 package ru.geekbrains.persist;
 
-import org.springframework.lang.NonNull;
-import org.springframework.validation.annotation.Validated;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 
