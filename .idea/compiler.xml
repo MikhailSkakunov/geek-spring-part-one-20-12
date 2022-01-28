@@ -11,6 +11,7 @@
         <module name="lesson-03-spring-mvc" />
         <module name="lesson-04-spring-boot" />
         <module name="lesson-02-spring-framework" />
+        <module name="lesson-06-hibernate-02" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

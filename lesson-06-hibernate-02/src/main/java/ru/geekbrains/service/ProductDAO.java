@@ -1,20 +1,20 @@
-package ru.geekbrains.entity;
+package ru.geekbrains.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import ru.geekbrains.entity.Product;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
-
+@Component
 public class ProductDAO {
 
-    private EntityManagerFactory emFactory;
-
-    public ProductDAO(EntityManagerFactory emFactory) {
-        this.emFactory = emFactory;
-    }
+    @Autowired
+    public Service service;
 
     public List<Product> findAll() {
-        EntityManager em = emFactory.createEntityManager();
+        EntityManager em = service.getFactory().createEntityManager();
         em.getTransaction().begin();
         List<Product> products = em.createNativeQuery("select * from products", Product.class)
                 .getResultList();
@@ -25,7 +25,7 @@ public class ProductDAO {
     }
 
     public Product findById(long id) {
-        EntityManager em = emFactory.createEntityManager();
+        EntityManager em = service.getFactory().createEntityManager();
         em.getTransaction().begin();
         Product product = em.find(Product.class, id);
         em.getTransaction().commit();
@@ -35,7 +35,7 @@ public class ProductDAO {
     }
 
     public void saveOrUpdate(Product product) {
-        EntityManager em = emFactory.createEntityManager();
+        EntityManager em = service.getFactory().createEntityManager();
         em.getTransaction().begin();
         if (product.getId() == null)
         em.persist(product);
@@ -46,7 +46,7 @@ public class ProductDAO {
     }
 
     public void delete(Long id) {
-        EntityManager em = emFactory.createEntityManager();
+        EntityManager em = service.getFactory().createEntityManager();
         em.getTransaction().begin();
         em.createQuery("delete from Product p where p.id = :id")
                 .setParameter("id", id)

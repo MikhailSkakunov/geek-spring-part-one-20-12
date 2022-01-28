@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DataExportManager">
@@ -32,7 +32,17 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="a22e02fe-ecd3-43d6-ad3d-e9b23b939aaa">
-      <console name="Connection 1" type="STANDARD" schema="hibernate_lesson_20_12" session="Main"><![CDATA[select * from products;]]></console>
+      <console name="Connection 1" type="STANDARD" schema="hibernate_lesson_20_12" session="Main"><![CDATA[select * from products;
+select * from customers;
+
+
+DROP DATABASE IF EXISTS `hibernate_lesson_20_12`;
+CREATE DATABASE `hibernate_lesson_20_12`;
+USE `hibernate_lesson_20_12`;
+
+INSERT INTO `products` (`title`, `price`) VALUES ('Product 1', 156.60), ('Product 2', 285.70), ('Product 3', 159.90), ('Product 4', 85.70), ('Product 5', 34.32), ('Product 6', 93.43);
+
+INSERT INTO `customers` (`name`) VALUES ('Bob'), ('Mark'), ('Jack');]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -48,6 +58,10 @@
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
+  </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/lesson-06-hibernate-02/src/main/resources/full.sql" connection-id="a22e02fe-ecd3-43d6-ad3d-e9b23b939aaa" session-id="MAIN" current-schema="mysql" />
+    <mapping file-url="file://$PROJECT_DIR$/lesson-06-hibernate-02/src/main/resources/full.sql" connection-id="a22e02fe-ecd3-43d6-ad3d-e9b23b939aaa" session-id="MAIN" current-schema="hibernate_lesson_20_12" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
@@ -68,7 +82,9 @@
     <diagnostics-history />
   </component>
   <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
-    <recently-used-interfaces />
+    <recently-used-interfaces>
+      <mapping database-type="MYSQL" interface-id="DEFAULT" />
+    </recently-used-interfaces>
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
@@ -91,7 +107,7 @@
           <deprecated-pwd value="cm9vdA==" />
         </database>
         <properties>
-          <auto-commit value="false" />
+          <auto-commit value="true" />
         </properties>
         <ssh-settings>
           <active value="false" />

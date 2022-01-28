@@ -1,55 +1,49 @@
-package ru.geekbrains;
-
+package ru.geekbrains.service;
 import org.hibernate.cfg.Configuration;
-import ru.geekbrains.entity.Product;
-import ru.geekbrains.entity.ProductDAO;
+import org.springframework.stereotype.Component;
+import ru.geekbrains.init.InitDataBase;
 
+import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import java.util.function.Function;
 
 
-public class Main {
+@Component
+public class Service {
 
-    private static EntityManagerFactory emFactory;
+    private EntityManagerFactory emFactory;
 
-    public static void init() {
+    @PostConstruct
+    public void init() {
+        InitDataBase.forcePrepareData();
+
         emFactory = new Configuration()
-            .configure("hibernate.cfg.xml")
-            .buildSessionFactory();
-}
-
-
-    public static void main(String[] args) {
-
-        init();
-
-        ProductDAO productDAO = new ProductDAO(emFactory);
-//        productDAO.findAll();
-//        productDAO.saveOrUpdate(new Product(2L, "title2", 160));
-//        productDAO.delete(1L);
-        productDAO.findById(4L);
-
-        close();
+                .configure("hibernate.cfg.xml")
+                .buildSessionFactory();
+        EntityManager em = emFactory.createEntityManager();
     }
 
-    public static void close() {
-        emFactory.close();
+    public EntityManagerFactory getFactory() {
+        return emFactory;
     }
 }
+
+
+
 //        EntityManager em = emFactory.createEntityManager();
 
-        // INSERT
+// INSERT
 //        em.getTransaction().begin();
 //        em.persist(new User(null, "user1", "pass1"));
 //        em.getTransaction().commit();
 
-        //SELECT
+//SELECT
 
 //        System.out.println("User:");
 //        User user = em.find(User.class, 1L);
 //        System.out.println(user);
 
-        //SELECT 2
+//SELECT 2
 //        System.out.println("Users:");
 //        List<User> users = em.createQuery("select u from User u where u.username = :username", User.class)
 //                .setParameter("username", "user1")
@@ -60,20 +54,20 @@ public class Main {
 //                .getResultList();
 //        System.out.println(users);
 
-        //UPDATE 1
+//UPDATE 1
 //        User user = em.find(User.class, 3L);
 //        em.getTransaction().begin();
 //        user.setPassword("pass123");
 //        em.getTransaction().commit();
 
-        //UPDATE 2
+//UPDATE 2
 //        User user = new User(1L, "user1", "password1");
 //        em.getTransaction().begin();
 //        em.merge(user);
 //        em.getTransaction().commit();
 //        System.out.println(user);
 
-        //UPDATE 3
+//UPDATE 3
 //        em.getTransaction().begin();
 //        em.createQuery("update User set username = :username, password = :password where id = :id")
 //                        .setParameter("username","user1")
@@ -82,18 +76,18 @@ public class Main {
 //                        .executeUpdate();
 //        em.getTransaction().commit();
 
-        //DELETE 1
+//DELETE 1
 //        em.getTransaction().begin();
 //        User user = em.find(User.class, 3L);
 //        em.remove(user);
 //        em.getTransaction().commit();
 
-        //DELETE 2
+//DELETE 2
 //        em.getTransaction().begin();
 //        em.createQuery("delete from User  where  id = :id")
 //                .setParameter("id", 2L)
 //                .executeUpdate();
 
-        //        em.getTransaction().commit();
+//        em.getTransaction().commit();
 
 //        em.close();
